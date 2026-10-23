@@ -1,0 +1,63 @@
+{
+  "name": "neon",
+  "label": "Neón tech",
+  "description": "Rejilla en perspectiva tipo synthwave, líneas de escaneo, cian y magenta con mucho brillo, titulares en mayúsculas: tecnología, ciber y datos.",
+  "tone": "futurista, técnico, intenso",
+  "bestFor": [
+    "ciberseguridad",
+    "IA y datos",
+    "gaming",
+    "demos técnicas",
+    "eventos tech"
+  ],
+  "mode": "dark",
+  "colors": {
+    "bg": "#05010f",
+    "bg2": "#1a0640",
+    "deep": "#020008",
+    "primary": "#00e5ff",
+    "accent": "#ff2bd6",
+    "accentHi": "#ff7ae6",
+    "text": "#e8fbff",
+    "soft": "#8fb8ff",
+    "line": "rgba(0,229,255,0.35)",
+    "paper": "#0d0221",
+    "paper2": "#1a0640",
+    "ink": "#e8fbff",
+    "ok": "#39ff14",
+    "bad": "#ff3864",
+    "warn": "#f9f871",
+    "series": [
+      "#00e5ff",
+      "#ff2bd6",
+      "#39ff14",
+      "#f9f871",
+      "#9d4edd"
+    ]
+  },
+  "fonts": {
+    "display": "\"Bahnschrift\", \"Eurostile\", \"Segoe UI\", sans-serif",
+    "body": "\"Bahnschrift\", \"Segoe UI\", sans-serif",
+    "mono": "\"Cascadia Code\", Consolas, monospace"
+  },
+  "type": {
+    "headWeight": 600,
+    "textWeight": 400,
+    "labelWeight": 600,
+    "headCase": "upper"
+  },
+  "shape": {
+    "radius": 6,
+    "panel": "outline",
+    "lineWidth": 2
+  },
+  "stage": {
+    "kind": "grid",
+    "grid": 1,
+    "motes": 1
+  },
+  "motion": {
+    "glow": 1.8,
+    "energy": 1.4
+  }
+}

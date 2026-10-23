@@ -1,0 +1,63 @@
+{
+  "name": "corporate",
+  "label": "Corporate",
+  "description": "Keynote ejecutivo sobre escenario nocturno: titulares ligeros que suben palabra a palabra, red de puntos y pulsos de energía en el color de acento.",
+  "tone": "ejecutivo, sobrio, seguro",
+  "bestFor": [
+    "estrategia",
+    "arquitectura",
+    "cifras",
+    "producto con capturas",
+    "comité de dirección"
+  ],
+  "mode": "dark",
+  "colors": {
+    "bg": "#0b1f33",
+    "bg2": "#123a5c",
+    "deep": "#06121f",
+    "primary": "#1d5c8f",
+    "accent": "#f29a2e",
+    "accentHi": "#ffb85c",
+    "text": "#ffffff",
+    "soft": "#c9d6e2",
+    "line": "rgba(201,214,226,0.22)",
+    "paper": "#f5f6f7",
+    "paper2": "#e5ebf0",
+    "ink": "#0b1f33",
+    "ok": "#7cc576",
+    "bad": "#e5484d",
+    "warn": "#ffd33d",
+    "series": [
+      "#f29a2e",
+      "#5aa9e6",
+      "#7cc576",
+      "#c58af9",
+      "#ff6f91"
+    ]
+  },
+  "fonts": {
+    "display": "\"Segoe UI\", \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "body": "\"Segoe UI\", \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "mono": "\"Cascadia Code\", Consolas, monospace"
+  },
+  "type": {
+    "headWeight": 300,
+    "textWeight": 300,
+    "labelWeight": 600,
+    "headCase": "none"
+  },
+  "shape": {
+    "radius": 18,
+    "panel": "glass",
+    "lineWidth": 2
+  },
+  "stage": {
+    "kind": "night",
+    "grid": 1,
+    "motes": 1
+  },
+  "motion": {
+    "glow": 1,
+    "energy": 1
+  }
+}

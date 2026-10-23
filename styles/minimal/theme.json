@@ -1,0 +1,62 @@
+{
+  "name": "minimal",
+  "label": "Minimal keynote",
+  "description": "Minimalismo de keynote de producto: fondo casi negro, mucho aire, tipografía grande y seminegrita, un único color de acento y movimiento muy suave.",
+  "tone": "premium, limpio, contenido",
+  "bestFor": [
+    "lanzamiento de producto",
+    "una sola idea fuerte",
+    "visión",
+    "anuncios"
+  ],
+  "mode": "dark",
+  "colors": {
+    "bg": "#000000",
+    "bg2": "#16161a",
+    "deep": "#000000",
+    "primary": "#2d2d33",
+    "accent": "#2997ff",
+    "accentHi": "#6cb6ff",
+    "text": "#f5f5f7",
+    "soft": "#a1a1a6",
+    "line": "rgba(161,161,166,0.25)",
+    "paper": "#f5f5f7",
+    "paper2": "#e8e8ed",
+    "ink": "#1d1d1f",
+    "ok": "#30d158",
+    "bad": "#ff453a",
+    "warn": "#ffd60a",
+    "series": [
+      "#2997ff",
+      "#bf5af2",
+      "#30d158",
+      "#ff9f0a",
+      "#ff375f"
+    ]
+  },
+  "fonts": {
+    "display": "\"SF Pro Display\", \"Segoe UI Variable Display\", \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+    "body": "\"SF Pro Text\", \"Segoe UI Variable Text\", \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif",
+    "mono": "\"SF Mono\", Consolas, monospace"
+  },
+  "type": {
+    "headWeight": 600,
+    "textWeight": 400,
+    "labelWeight": 600,
+    "headCase": "none"
+  },
+  "shape": {
+    "radius": 28,
+    "panel": "solid",
+    "lineWidth": 1.5
+  },
+  "stage": {
+    "kind": "clean",
+    "grid": 0,
+    "motes": 0
+  },
+  "motion": {
+    "glow": 0.35,
+    "energy": 0.6
+  }
+}

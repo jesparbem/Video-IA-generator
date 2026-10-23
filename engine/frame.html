@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>video frame</title>
+<style>
+  html, body { margin: 0; background: #111; }
+  canvas { display: block; }
+  body.play canvas { width: 100vw; height: auto; max-height: calc(100vh - 56px); object-fit: contain; }
+  #bar { display: none; gap: 12px; align-items: center; padding: 10px 16px; font: 13px ui-monospace, monospace; color: #ddd; }
+  body.play #bar { display: flex; }
+  #bar input { flex: 1; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="bar"><button id="pp">play</button><input id="scrub" type="range" min="0" step="0.001"><span id="tc">0.00</span></div>
+<script type="module">
+  // Loads one scene against its segment timing.
+  //   ?ep=videos/<slug>&seg=<segName>            -> render mode (render.mjs drives window.__draw)
+  //   ?ep=videos/<slug>&seg=<segName>&play=1     -> live preview with audio + scrubber
+  //   &style=<name>                               -> force a style (theme) for this render
+  // Order matters: config → setFormat → theme → scene, so kits see the configured size and tokens.
+  const q = new URLSearchParams(location.search);
+  const ep = q.get('ep');
+  const segName = q.get('seg');
+  const getJson = async (u) => { try { const r = await fetch(u); return r.ok ? await r.json() : {}; } catch { return {}; } };
+  const merge = (a, b) => { if (Array.isArray(b) || typeof b !== 'object' || b === null) return b === undefined ? a : b; const o = { ...(a || {}) }; for (const [k, v] of Object.entries(b)) o[k] = merge(o[k], v); return o; };
+  const cfg = merge(await getJson('/project.config.json'), await getJson(`/${ep}/video.json`));
+  const style = q.get('style') || cfg.style || 'corporate';
+  const R = await import('/engine/runtime.js');
+  R.setFormat(cfg.video?.width ?? 1920, cfg.video?.height ?? 1080, cfg.video?.fps ?? 30);
+  const cv = document.getElementById('c');
+  cv.width = R.W; cv.height = R.H;
+  if (!q.get('play')) { cv.style.width = R.W + 'px'; cv.style.height = R.H + 'px'; }
+  const TH = await import('/styles/_base/theme.js');
+  const theme = await getJson(`/styles/${style}/theme.json`);
+  TH.applyTheme(theme, cfg.brand, cfg);
+  await TH.loadThemeFonts(theme, `/styles/${style}`);
+  const timings = await (await fetch(`/${ep}/audio/timings.json`)).json();
+  const idx = timings.segments.findIndex((s) => s.name === segName);
+  const timing = timings.segments[idx];
+  const mod = await import(`/${ep}/scenes/${String(idx + 1).padStart(2, '0')}-${segName}.js?v=${Date.now()}`);
+  const scene = mod.default;
+  const env = { timing, dur: timing.duration + timings.tail, ep, R, cfg, style, theme: TH.T, W: R.W, H: R.H };
+  const ctx = document.getElementById('c').getContext('2d');
+  if (scene.setup) await scene.setup(env);
+  // warm system fonts so the first frame measures correctly
+  for (const f of [...Object.values(R.FONT), TH.T.fontDisplay, TH.T.fontBody, TH.T.fontMono]) for (const w of [300, 400, 500, 600, 700, 800, 900]) { ctx.font = `${w} 40px ${f}`; ctx.fillText('Aa', -100, -100); }
+  await document.fonts.ready;
+
+  window.__dur = env.dur;
+  window.__draw = (t) => {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+    scene.draw(ctx, t, env);
+  };
+  window.__ready = true;
+
+  if (q.get('play')) {
+    document.body.classList.add('play');
+    const audio = new Audio(`/${ep}/audio/${timing.file}`);
+    const scrub = document.getElementById('scrub');
+    const tc = document.getElementById('tc');
+    scrub.max = env.dur;
+    let playing = false, t0 = 0, start = 0, t = 0;
+    const pp = document.getElementById('pp');
+    pp.onclick = () => {
+      playing = !playing;
+      pp.textContent = playing ? 'pause' : 'play';
+      if (playing) { start = performance.now(); t0 = t; audio.currentTime = t; audio.play(); } else audio.pause();
+    };
+    scrub.oninput = () => { t = +scrub.value; if (playing) { t0 = t; start = performance.now(); audio.currentTime = t; } };
+    const loop = () => {
+      if (playing) { t = t0 + (performance.now() - start) / 1000; if (t > env.dur) { t = 0; t0 = 0; start = performance.now(); audio.currentTime = 0; } scrub.value = t; }
+      tc.textContent = t.toFixed(2);
+      window.__draw(t);
+      requestAnimationFrame(loop);
+    };
+    loop();
+  }
+</script>
+</body>
+</html>

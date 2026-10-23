@@ -1,0 +1,51 @@
+<!doctype html><html lang="es-ES"><head><meta charset="utf-8">
+<title>De un documento a un *vídeo* narrado — infografía</title>
+<style>
+  :root { --bg:#0b1f33; --bg2:#123a5c; --text:#ffffff; --soft:#c9d6e2; --accent:#f29a2e; --primary:#1d5c8f; --line:rgba(201,214,226,0.22);
+          --display:"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; --body:"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif; --r:18px; }
+  * { box-sizing: border-box; margin: 0; }
+  html { width: 1080px; }
+  body { min-height: 1920px; background: radial-gradient(120% 80% at 50% 0%, var(--bg2), var(--bg) 70%); color: var(--text); font-family: var(--body);
+         padding: 72px 64px; display: flex; flex-direction: column; gap: 44px; }
+  .kicker { color: var(--accent); font: 600 22px var(--body); letter-spacing: .28em; text-transform: uppercase; display: flex; align-items: center; gap: 16px; }
+  .kicker::before { content: ''; width: 40px; height: 4px; background: var(--accent); }
+  h1 { font: 300 84px/1.04 var(--display);  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .sub { color: var(--soft); font-size: 30px; line-height: 1.35; max-width: 92%; }
+  .idea { border-left: 8px solid var(--accent); padding: 18px 28px; font: 300 36px/1.3 var(--display); background: rgba(255,255,255,0.06); border-radius: 0 var(--r) var(--r) 0; }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .kpi { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(201,214,226,0.22); box-shadow: none; border-radius: var(--r); padding: 26px; }
+  .kpi b { display: block; font: 300 76px/1 var(--display); color: var(--accent); }
+  .kpi span { color: var(--soft); font-size: 24px; line-height: 1.3; display: block; margin-top: 10px; }
+  h2 { font: 600 24px var(--body); letter-spacing: .2em; text-transform: uppercase; color: var(--soft); }
+  .steps { display: grid; grid-template-columns: 1fr; gap: 18px; counter-reset: s; }
+  .step { display: flex; gap: 22px; align-items: flex-start; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(201,214,226,0.22); box-shadow: none; border-radius: var(--r); padding: 22px 26px;  }
+  .step i { flex: none; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; font: 700 26px var(--display); color: #0b1f33; font-style: normal; }
+  .step h3 { font: 600 30px var(--display); margin-bottom: 6px; }
+  .step p, .sec p, .sec li { color: var(--soft); font-size: 24px; line-height: 1.4; }
+  .secs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .sec { background: rgba(255,255,255,0.06); border: 1.5px solid rgba(201,214,226,0.22); box-shadow: none; border-radius: var(--r); padding: 26px; }
+  .sec .ic { color: var(--accent); margin-bottom: 12px; }
+  .sec h3 { font: 600 28px var(--display); margin-bottom: 8px; }
+  .sec ul { padding-left: 1.1em; margin-top: 8px; }
+  blockquote { font: italic 300 38px/1.3 var(--display); text-align: center; padding: 0 6%; }
+  blockquote cite { display: block; margin-top: 14px; font: 600 22px var(--body); color: var(--soft); font-style: normal; }
+  footer { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; color: var(--soft); font-size: 18px; border-top: 1px solid var(--line); padding-top: 20px; }
+  footer .brand { font: 600 20px var(--body); letter-spacing: .25em; text-transform: uppercase; color: var(--text); white-space: nowrap; }
+  footer .brand img { height: 40px; }
+</style></head><body>
+  <header>
+    <div class="kicker">Video IA Generator</div>
+    <h1 style="margin-top:18px">De un documento a un <em>vídeo</em> narrado</h1>
+    <p class="sub" style="margin-top:16px">Un agente de IA escribe el guion, genera la voz, dibuja cada escena en código y monta el MP4 con su infografía.</p>
+  </header>
+  <div class="idea">Tú decides qué se cuenta; la IA hace el resto, y tú revisas antes de publicar.</div>
+  <div class="kpis"><div class="kpi"><b>9</b><span>estilos listos para usar</span></div><div class="kpi"><b>0 €</b><span>voz por defecto (Edge TTS)</span></div><div class="kpi"><b>2</b><span>paradas de revisión humana</span></div></div>
+  <section><h2 style="margin-bottom:18px">Cómo funciona</h2><div class="steps"><div class="step"><i style="background:#f29a2e">1</i><div><h3>Briefing y guion</h3><p>Lee la fuente y fija la idea, los datos y los segmentos.</p></div></div><div class="step"><i style="background:#5aa9e6">2</i><div><h3>Voz con tiempos</h3><p>TTS por frase, con el inicio de cada palabra.</p></div></div><div class="step"><i style="background:#7cc576">3</i><div><h3>Escenas en código</h3><p>Cada beat cae en su palabra; se revisa con fotogramas.</p></div></div><div class="step"><i style="background:#c58af9">4</i><div><h3>MP4 + extras</h3><p>Montaje, subtítulos, capítulos e infografía.</p></div></div></div></section>
+  <div class="secs"><div class="sec"><div class="ic"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-1.5-1-2.5 1-1.5 2-1.5h2a4 4 0 0 0 4-4c0-4.5-4-8-9-8z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7" r="1"/></svg></div><h3>Estilos</h3><p>Corporate, minimal, creativo, clásico, neón, editorial, pastel, educación e islas. O crea el tuyo con npm run new-style.</p></div><div class="sec"><div class="ic"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></div><h3>Todo parametrizable</h3><p>Idioma, formato, voz, marca, salidas y guardrails en project.config.json.</p></div><div class="sec"><div class="ic"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div><h3>Sin secretos</h3><p>Las claves solo en .env (ignorado por git). La voz por defecto no necesita clave.</p></div><div class="sec"><div class="ic"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Cualquier agente</h3><p>Claude Code, OpenAI Codex u OpenClaw, con la misma skill.</p></div></div>
+  
+  <footer>
+    <div>Generado con Video IA Generator</div>
+    <div class="brand">Video IA Generator</div>
+  </footer>
+</body></html>

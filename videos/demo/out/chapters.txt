@@ -1,0 +1,3 @@
+00:00 apertura
+00:10 flujo
+00:20 cierre

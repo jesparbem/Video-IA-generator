@@ -1,0 +1,63 @@
+{
+  "name": "islas",
+  "label": "Islas (diorama isométrico)",
+  "description": "Mundo en miniatura de islas flotantes en isometría real, cámara de dron, personas y agentes que brillan; la luz cuenta la historia (amanecer → noche). Efecto wow. Solo 16:9.",
+  "tone": "narrativo, cercano, sorprendente",
+  "bestFor": [
+    "historias de adopción",
+    "mapas de una organización",
+    "lanzamientos",
+    "ecosistemas"
+  ],
+  "mode": "light",
+  "colors": {
+    "bg": "#cfe6f2",
+    "bg2": "#eaf5fb",
+    "deep": "#0d2238",
+    "primary": "#1d5c8f",
+    "accent": "#f29a2e",
+    "accentHi": "#ffb85c",
+    "text": "#1f2433",
+    "soft": "#5b6b78",
+    "line": "rgba(31,36,51,0.25)",
+    "paper": "#ffffff",
+    "paper2": "#eef3f6",
+    "ink": "#1f2433",
+    "ok": "#3fa27a",
+    "bad": "#d9534f",
+    "warn": "#d9a93a",
+    "series": [
+      "#1d5c8f",
+      "#f29a2e",
+      "#5b7db1",
+      "#3fa27a",
+      "#d9a93a",
+      "#7a7256"
+    ]
+  },
+  "fonts": {
+    "display": "\"Avenir Next\", Avenir, \"Segoe UI\", system-ui, sans-serif",
+    "body": "\"Avenir Next\", Avenir, \"Segoe UI\", system-ui, sans-serif",
+    "mono": "Consolas, monospace"
+  },
+  "type": {
+    "headWeight": 700,
+    "textWeight": 400,
+    "labelWeight": 700,
+    "headCase": "none"
+  },
+  "shape": {
+    "radius": 18,
+    "panel": "card",
+    "lineWidth": 2
+  },
+  "stage": {
+    "kind": "clean",
+    "grid": 0,
+    "motes": 0
+  },
+  "motion": {
+    "glow": 1,
+    "energy": 1
+  }
+}

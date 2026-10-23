@@ -1,0 +1,63 @@
+{
+  "name": "creativo",
+  "label": "Creativo",
+  "description": "Malla de color en movimiento, tipografía muy gruesa, pegatinas inclinadas y garabatos: energía de agencia creativa o de redes sociales.",
+  "tone": "atrevido, juvenil, enérgico",
+  "bestFor": [
+    "marketing",
+    "redes sociales",
+    "eventos",
+    "cultura interna",
+    "lanzamientos"
+  ],
+  "mode": "dark",
+  "colors": {
+    "bg": "#1a0b2e",
+    "bg2": "#2d1457",
+    "deep": "#0d0618",
+    "primary": "#845ef7",
+    "accent": "#ffd43b",
+    "accentHi": "#ffe066",
+    "text": "#ffffff",
+    "soft": "#e5dbff",
+    "line": "rgba(229,219,255,0.3)",
+    "paper": "#fff9db",
+    "paper2": "#ffec99",
+    "ink": "#1a0b2e",
+    "ok": "#69db7c",
+    "bad": "#ff6b6b",
+    "warn": "#ffd43b",
+    "series": [
+      "#ff5f6d",
+      "#845ef7",
+      "#22d3ee",
+      "#ffc371",
+      "#69db7c"
+    ]
+  },
+  "fonts": {
+    "display": "\"Poppins\", \"Segoe UI Black\", \"Arial Black\", \"Segoe UI\", sans-serif",
+    "body": "\"Poppins\", \"Segoe UI\", Arial, sans-serif",
+    "mono": "Consolas, monospace"
+  },
+  "type": {
+    "headWeight": 900,
+    "textWeight": 500,
+    "labelWeight": 800,
+    "headCase": "none"
+  },
+  "shape": {
+    "radius": 28,
+    "panel": "glass",
+    "lineWidth": 3
+  },
+  "stage": {
+    "kind": "mesh",
+    "grid": 0,
+    "motes": 1
+  },
+  "motion": {
+    "glow": 1.2,
+    "energy": 1.2
+  }
+}

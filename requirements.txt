@@ -1,0 +1,6 @@
+numpy
+soundfile
+edge-tts
+truststore
+# optional, offline voice (needs kokoro-models/):
+# kokoro-onnx

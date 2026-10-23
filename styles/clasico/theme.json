@@ -1,0 +1,63 @@
+{
+  "name": "clasico",
+  "label": "Clásico",
+  "description": "Papel cálido, tipografía serif, filetes y ornamentos de imprenta, burdeos y oro: la elegancia de un libro o un informe anual.",
+  "tone": "elegante, sereno, institucional",
+  "bestFor": [
+    "historia",
+    "aniversarios",
+    "cultura",
+    "informes anuales",
+    "humanidades"
+  ],
+  "mode": "light",
+  "colors": {
+    "bg": "#f1e8d4",
+    "bg2": "#fbf6ea",
+    "deep": "#d9c9a6",
+    "primary": "#7a1f1f",
+    "accent": "#b8862b",
+    "accentHi": "#d6a64a",
+    "text": "#2b2118",
+    "soft": "#6b5a48",
+    "line": "rgba(107,90,72,0.35)",
+    "paper": "#fbf6ea",
+    "paper2": "#efe4cc",
+    "ink": "#2b2118",
+    "ok": "#4f7a3a",
+    "bad": "#9b2c2c",
+    "warn": "#b8862b",
+    "series": [
+      "#7a1f1f",
+      "#b8862b",
+      "#3c5a74",
+      "#4f7a3a",
+      "#6b4c7a"
+    ]
+  },
+  "fonts": {
+    "display": "\"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+    "body": "Georgia, \"Times New Roman\", serif",
+    "mono": "\"Courier New\", monospace"
+  },
+  "type": {
+    "headWeight": 400,
+    "textWeight": 400,
+    "labelWeight": 700,
+    "headCase": "none"
+  },
+  "shape": {
+    "radius": 2,
+    "panel": "outline",
+    "lineWidth": 1.5
+  },
+  "stage": {
+    "kind": "paper",
+    "grid": 0,
+    "motes": 0
+  },
+  "motion": {
+    "glow": 0.2,
+    "energy": 0.5
+  }
+}

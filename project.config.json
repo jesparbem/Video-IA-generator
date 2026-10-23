@@ -1,0 +1,75 @@
+{
+  "$comment": "Project-wide defaults. Regenerate with `npm run init`. Each video can override any key in videos/<slug>/video.json. Secrets never go here: they live in .env.",
+  "project": {
+    "name": "Mi proyecto",
+    "language": "es-ES",
+    "audience": "público general",
+    "tone": "claro y cercano"
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "targetMinutes": 2,
+    "wordsPerMinute": 150,
+    "segments": {
+      "min": 5,
+      "max": 9
+    }
+  },
+  "style": "corporate",
+  "brand": {
+    "name": "",
+    "product": "",
+    "logo": "",
+    "logoOnLight": "",
+    "symbol": "",
+    "showBug": true
+  },
+  "tts": {
+    "engine": "edge",
+    "edge": {
+      "voice": "es-ES-AlvaroNeural",
+      "rate": "+0%"
+    },
+    "elevenlabs": {
+      "voiceId": "",
+      "model": "eleven_multilingual_v2"
+    },
+    "kokoro": {
+      "voice": "em_alex",
+      "lang": "es"
+    },
+    "sentenceGap": 0.22,
+    "paragraphGap": 0.45,
+    "tail": 0.6
+  },
+  "render": {
+    "workers": 6,
+    "crf": 16,
+    "preset": "medium",
+    "browserChannel": ""
+  },
+  "audio": {
+    "loudness": -16,
+    "music": "",
+    "musicVolume": 0.25,
+    "ducking": true
+  },
+  "outputs": {
+    "subtitles": true,
+    "burnSubtitles": false,
+    "infographic": true,
+    "infographicFormat": "vertical",
+    "infographicPdf": true,
+    "chapters": true
+  },
+  "guardrails": {
+    "personNames": false,
+    "sourceOnlyFacts": true,
+    "reviewBeforeTTS": true,
+    "reviewStills": true,
+    "minTextPx": 30,
+    "maxOnScreenWords": 8
+  }
+}

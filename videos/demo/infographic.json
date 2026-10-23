@@ -1,0 +1,25 @@
+{
+  "kicker": "Video IA Generator",
+  "title": "De un documento a un *vídeo* narrado",
+  "subtitle": "Un agente de IA escribe el guion, genera la voz, dibuja cada escena en código y monta el MP4 con su infografía.",
+  "idea": "Tú decides qué se cuenta; la IA hace el resto, y tú revisas antes de publicar.",
+  "kpis": [
+    { "value": "9", "label": "estilos listos para usar" },
+    { "value": "0 €", "label": "voz por defecto (Edge TTS)" },
+    { "value": "2", "label": "paradas de revisión humana" }
+  ],
+  "stepsTitle": "Cómo funciona",
+  "steps": [
+    { "title": "Briefing y guion", "text": "Lee la fuente y fija la idea, los datos y los segmentos." },
+    { "title": "Voz con tiempos", "text": "TTS por frase, con el inicio de cada palabra." },
+    { "title": "Escenas en código", "text": "Cada beat cae en su palabra; se revisa con fotogramas." },
+    { "title": "MP4 + extras", "text": "Montaje, subtítulos, capítulos e infografía." }
+  ],
+  "sections": [
+    { "icon": "palette", "title": "Estilos", "text": "Corporate, minimal, creativo, clásico, neón, editorial, pastel, educación e islas. O crea el tuyo con npm run new-style." },
+    { "icon": "gear", "title": "Todo parametrizable", "text": "Idioma, formato, voz, marca, salidas y guardrails en project.config.json." },
+    { "icon": "shield", "title": "Sin secretos", "text": "Las claves solo en .env (ignorado por git). La voz por defecto no necesita clave." },
+    { "icon": "bolt", "title": "Cualquier agente", "text": "Claude Code, OpenAI Codex u OpenClaw, con la misma skill." }
+  ],
+  "footer": "Generado con Video IA Generator"
+}

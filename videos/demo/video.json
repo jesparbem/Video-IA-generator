@@ -1,0 +1,6 @@
+{
+  "$comment": "Overrides for this video only (deep-merged over project.config.json).",
+  "style": "corporate",
+  "brand": { "product": "Video IA Generator" },
+  "outputs": { "infographicFormat": "vertical" }
+}

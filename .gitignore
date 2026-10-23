@@ -1,0 +1,28 @@
+# secrets and machine-local
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# dependencies
+node_modules/
+.venv/
+__pycache__/
+kokoro-models/
+
+# brand assets and licensed media stay local (point to them from project.config.json)
+brand/
+
+# regenerable output
+videos/*/review/
+videos/*/render/
+videos/*/audio/.cache/
+videos/*/audio/.*.raw.wav
+.infographic-*.html
+
+# private videos: keep sources out of git unless you decide otherwise
+videos/*/fuente/
+
+.DS_Store
+Thumbs.db

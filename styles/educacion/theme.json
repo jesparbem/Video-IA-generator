@@ -1,0 +1,63 @@
+{
+  "name": "educacion",
+  "label": "Educación",
+  "description": "Pensado para repasar y estudiar: fondo nocturno amable, fórmulas tipografiadas, glifos de conceptos, tarjetas de \"pregunta de examen\" y barra de progreso.",
+  "tone": "didáctico, claro, motivador",
+  "bestFor": [
+    "clases",
+    "repaso de exámenes",
+    "divulgación científica",
+    "filosofía",
+    "física"
+  ],
+  "mode": "dark",
+  "colors": {
+    "bg": "#10243a",
+    "bg2": "#1b3a57",
+    "deep": "#081522",
+    "primary": "#2a9d8f",
+    "accent": "#ffd166",
+    "accentHi": "#ffe29a",
+    "text": "#ffffff",
+    "soft": "#cfe3f0",
+    "line": "rgba(207,227,240,0.25)",
+    "paper": "#f7f7f2",
+    "paper2": "#e8eef2",
+    "ink": "#10243a",
+    "ok": "#8ad18a",
+    "bad": "#ef6f6c",
+    "warn": "#ffd166",
+    "series": [
+      "#ffd166",
+      "#2a9d8f",
+      "#ef6f6c",
+      "#8ecae6",
+      "#c3a6ff"
+    ]
+  },
+  "fonts": {
+    "display": "\"Segoe UI\", \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "body": "\"Segoe UI\", \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "mono": "\"Cascadia Code\", Consolas, monospace"
+  },
+  "type": {
+    "headWeight": 400,
+    "textWeight": 400,
+    "labelWeight": 600,
+    "headCase": "none"
+  },
+  "shape": {
+    "radius": 16,
+    "panel": "glass",
+    "lineWidth": 2
+  },
+  "stage": {
+    "kind": "night",
+    "grid": 0.6,
+    "motes": 0.6
+  },
+  "motion": {
+    "glow": 0.9,
+    "energy": 1
+  }
+}

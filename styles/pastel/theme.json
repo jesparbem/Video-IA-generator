@@ -1,0 +1,63 @@
+{
+  "name": "pastel",
+  "label": "Pastel amable",
+  "description": "Fondo crema con formas suaves, colores pastel, esquinas muy redondeadas y tipografía redonda: cercano y didáctico.",
+  "tone": "cercano, optimista, didáctico",
+  "bestFor": [
+    "formación",
+    "onboarding",
+    "RR. HH.",
+    "público infantil o general",
+    "tutoriales"
+  ],
+  "mode": "light",
+  "colors": {
+    "bg": "#fff8f1",
+    "bg2": "#ffffff",
+    "deep": "#f6e7da",
+    "primary": "#7c6cf2",
+    "accent": "#ff7a93",
+    "accentHi": "#ff9fb1",
+    "text": "#3d3a50",
+    "soft": "#7d7a92",
+    "line": "rgba(125,122,146,0.3)",
+    "paper": "#ffffff",
+    "paper2": "#f4efff",
+    "ink": "#3d3a50",
+    "ok": "#3dbb8f",
+    "bad": "#ff6b6b",
+    "warn": "#ffc861",
+    "series": [
+      "#a5b4fc",
+      "#fda4af",
+      "#86efac",
+      "#fcd34d",
+      "#93c5fd"
+    ]
+  },
+  "fonts": {
+    "display": "\"Nunito\", \"Segoe UI Rounded\", \"Arial Rounded MT Bold\", \"Segoe UI\", sans-serif",
+    "body": "\"Nunito\", \"Segoe UI\", Arial, sans-serif",
+    "mono": "Consolas, monospace"
+  },
+  "type": {
+    "headWeight": 700,
+    "textWeight": 400,
+    "labelWeight": 700,
+    "headCase": "none"
+  },
+  "shape": {
+    "radius": 32,
+    "panel": "card",
+    "lineWidth": 3
+  },
+  "stage": {
+    "kind": "blobs",
+    "grid": 0,
+    "motes": 0
+  },
+  "motion": {
+    "glow": 0.5,
+    "energy": 0.8
+  }
+}

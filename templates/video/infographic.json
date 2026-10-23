@@ -1,0 +1,20 @@
+{
+  "$comment": "Infografía del vídeo. Mismas reglas de veracidad que el briefing. Todo es opcional salvo title. Iconos: doc, voice, play, chart, users, bolt, check, gear, target, clock, shield, globe, idea, rocket, palette, film.",
+  "kicker": "<antetítulo corto>",
+  "title": "<Titular con la *palabra clave* entre asteriscos>",
+  "subtitle": "<una o dos frases de contexto>",
+  "idea": "<la idea que queda al acabar>",
+  "kpis": [
+    { "value": "<cifra>", "label": "<qué mide>" }
+  ],
+  "stepsTitle": "Cómo funciona",
+  "steps": [
+    { "title": "<paso>", "text": "<una frase>" }
+  ],
+  "sections": [
+    { "icon": "idea", "title": "<bloque>", "text": "<una o dos frases>", "bullets": [] }
+  ],
+  "quote": { "text": "", "cite": "" },
+  "sources": ["<documento fuente>"],
+  "footer": "<pie: fecha, área, contacto>"
+}

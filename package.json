@@ -1,0 +1,30 @@
+{
+  "name": "video-ia-generator",
+  "version": "1.0.0",
+  "description": "Narrated explainer videos animated in code by an AI agent (Claude Code, OpenAI Codex, OpenClaw), plus an explanatory infographic.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "init": "node engine/init.mjs",
+    "doctor": "node engine/doctor.mjs",
+    "new-video": "node engine/new-video.mjs",
+    "new-style": "node engine/new-style.mjs",
+    "style:preview": "node engine/style-preview.mjs",
+    "audio": "node engine/py.mjs",
+    "voice:check": "node engine/py.mjs --check",
+    "stills": "node engine/render.mjs",
+    "render": "node engine/render.mjs",
+    "assemble": "node engine/assemble.mjs",
+    "infographic": "node engine/infographic.mjs",
+    "build": "node engine/build.mjs",
+    "preview": "node engine/render.mjs",
+    "demo:audio": "node engine/py.mjs videos/demo",
+    "demo": "node engine/py.mjs videos/demo && node engine/build.mjs videos/demo",
+    "sync-skills": "node engine/sync-skills.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

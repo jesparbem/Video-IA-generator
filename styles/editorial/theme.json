@@ -1,0 +1,63 @@
+{
+  "name": "editorial",
+  "label": "Editorial",
+  "description": "Revista: serif de alto contraste para titulares, sans para el texto, bloques de color planos, numerales gigantes y citas destacadas.",
+  "tone": "periodístico, culto, con criterio",
+  "bestFor": [
+    "análisis",
+    "tendencias",
+    "informes",
+    "storytelling con datos",
+    "opinión"
+  ],
+  "mode": "light",
+  "colors": {
+    "bg": "#f7f4ef",
+    "bg2": "#111111",
+    "deep": "#e9e4da",
+    "primary": "#111111",
+    "accent": "#e63946",
+    "accentHi": "#ff5c69",
+    "text": "#111111",
+    "soft": "#5c5c5c",
+    "line": "rgba(17,17,17,0.25)",
+    "paper": "#ffffff",
+    "paper2": "#f0ece4",
+    "ink": "#111111",
+    "ok": "#2a9d8f",
+    "bad": "#e63946",
+    "warn": "#f4a261",
+    "series": [
+      "#e63946",
+      "#111111",
+      "#2a9d8f",
+      "#f4a261",
+      "#457b9d"
+    ]
+  },
+  "fonts": {
+    "display": "\"Didot\", \"Bodoni MT\", \"Playfair Display\", Georgia, serif",
+    "body": "\"Helvetica Neue\", \"Segoe UI\", Arial, sans-serif",
+    "mono": "\"Courier New\", monospace"
+  },
+  "type": {
+    "headWeight": 700,
+    "textWeight": 400,
+    "labelWeight": 700,
+    "headCase": "none"
+  },
+  "shape": {
+    "radius": 0,
+    "panel": "card",
+    "lineWidth": 2
+  },
+  "stage": {
+    "kind": "blocks",
+    "grid": 0,
+    "motes": 0
+  },
+  "motion": {
+    "glow": 0,
+    "energy": 0.7
+  }
+}
