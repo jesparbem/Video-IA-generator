@@ -18,7 +18,7 @@ export default {
   draw(ctx, t, env) { /* función pura de t, sin estado entre fotogramas */ },
 };
 ```
-Fichero: `videos/<slug>/scenes/NN-seg.js`. `env.dur` = duración del segmento con la cola. Tamaño: `W`×`H` del kit (no lo supongas). Colores y fuentes: tokens `T.*`, nunca hex sueltos. Beats: `cuesFor(env)` (`q.word('palabra')`, `q.s(i)`, `q.wordIn(i, 'palabra')`), nunca segundos fijos salvo pequeños desfases.
+Fichero: `videos/<slug>/scenes/NN-seg.js`. `env.dur` = duración del segmento con la cola. Tamaño: `W`×`H` del kit (no lo supongas). Colores y fuentes: tokens `T.*`, nunca hex sueltos. Beats: `cuesFor(env)` (`q.word('palabra')`, `q.s(i)`, `q.wordIn(i, 'palabra')`, `q.mark('nombre')` si la narración tiene `<mark name="nombre"/>`), nunca segundos fijos salvo pequeños desfases.
 
 ## Bucle (desde la raíz del repo)
 - `npm run stills -- videos/<slug> <seg> --stills 12` (o `--at 1.2,5,9.8`, ≤ 16 instantes) genera `review/<seg>/contact.png` y los fotogramas sueltos.

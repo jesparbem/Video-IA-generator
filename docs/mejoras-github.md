@@ -12,6 +12,8 @@ Revisión hecha en octubre de 2026 de proyectos abiertos parecidos o complementa
 | Skills portables entre agentes | [remotion-dev/skills](https://github.com/remotion-dev/skills), [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes), especificación AgentSkills | `.agents/skills/` (Codex y OpenClaw las leen tal cual) + copia en `.claude/skills/` |
 | Infografía con el mismo pipeline | HTML → Playwright `screenshot` + `pdf` | `engine/infographic.mjs` |
 | Tema como datos | sistemas de *design tokens* | `styles/<estilo>/theme.json` + kit que lee tokens al dibujar |
+| Subtítulos cinéticos (karaoke por palabra) | `@remotion/captions` | `captions()` del kit; `outputs.kineticCaptions` los dibuja sobre cada escena |
+| Marcadores en la narración | `manim-voiceover`, `waitUntil()` de Motion Canvas | `<mark name="x"/>` en `narration.md` → `marks` en `timings.json` → `q.mark('x')` |
 
 ## Hoja de ruta (por impacto/esfuerzo)
 
@@ -19,8 +21,6 @@ Revisión hecha en octubre de 2026 de proyectos abiertos parecidos o complementa
 |---|---|---|---|
 | **Alineación forzada** para cualquier TTS o voz grabada | [jianfch/stable-ts](https://github.com/jianfch/stable-ts) (MIT), [m-bain/whisperX](https://github.com/m-bain/whisperX) (BSD-2) | medio | un paso `align` que, si el motor no da tiempos, alinea el texto conocido con el audio. Abre la puerta a Piper, OpenAI TTS o una locución humana |
 | **Transiciones entre segmentos** como bloques reutilizables | registro de bloques de HyperFrames, `TransitionSeries` de Remotion, `xfade` de ffmpeg | bajo | solapar fin e inicio de segmentos en el canvas |
-| **Subtítulos cinéticos** dibujados en el canvas (karaoke por palabra) | `@remotion/captions` (agrupación tipo TikTok) | bajo | ya hay tiempos por palabra; útil en 9:16 |
-| **Marcadores en la narración** (`<mark name="x"/>`) | `manim-voiceover`, `waitUntil()` de Motion Canvas | bajo | alternativa a `q.word()` cuando la palabra se repite |
 | **Diagramas y gráficos** en la infografía | Mermaid, Vega-Lite, [antvis/Infographic](https://github.com/antvis/Infographic) (MIT) | bajo-medio | bloques `chart` y `diagram` en `infographic.json` |
 | **Voz clonada local** | Chatterbox (MIT), F5-TTS (pesos CC-BY-NC: no comercial) | medio | requiere la alineación forzada |
 | **Distribución como plugin** | marketplace de plugins de Claude Code, `npx skills add` | bajo | instalar las skills sin clonar el repo |

@@ -377,6 +377,7 @@ export function countUp(from, to, p, decimals = 0) {
  *   q.word('Medicare') -> start time of the first word matching (case-insensitive), or null
  *   q.word('Medicare', 2) -> second occurrence
  *   q.at(t)         -> index of the sentence being spoken at t
+ *   q.mark('x')     -> time of <mark name="x"/> in the narration, or null
  */
 export function cues(env) {
   const S = env.timing.sentences;
@@ -392,6 +393,7 @@ export function cues(env) {
       for (const w of words) if (norm(w.w) === m && ++k === nth) return w.start;
       return null;
     },
+    mark: (name) => env.timing.marks?.[name] ?? null,
     at(t) {
       let idx = 0;
       S.forEach((s, i) => { if (t >= s.start) idx = i; });

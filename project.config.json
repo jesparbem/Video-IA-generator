@@ -59,6 +59,7 @@
   "outputs": {
     "subtitles": true,
     "burnSubtitles": false,
+    "kineticCaptions": false,
     "infographic": true,
     "infographicFormat": "vertical",
     "infographicPdf": true,

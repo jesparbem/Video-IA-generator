@@ -49,12 +49,21 @@
   for (const f of [...Object.values(R.FONT), TH.T.fontDisplay, TH.T.fontBody, TH.T.fontMono]) for (const w of [300, 400, 500, 600, 700, 800, 900]) { ctx.font = `${w} 40px ${f}`; ctx.fillText('Aa', -100, -100); }
   await document.fonts.ready;
 
+  // kinetic captions drawn over every scene (outputs.kineticCaptions), so scenes never handle them
+  const overlay = cfg.outputs?.kineticCaptions ? (await import('/styles/_base/kit.js')).captions : null;
+
   window.__dur = env.dur;
   window.__draw = (t) => {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalAlpha = 1;
     ctx.globalCompositeOperation = 'source-over';
     scene.draw(ctx, t, env);
+    if (overlay) {
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
+      overlay(ctx, t, env);
+    }
   };
   window.__ready = true;
 

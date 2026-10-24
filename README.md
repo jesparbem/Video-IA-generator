@@ -9,6 +9,7 @@ Le das a tu agente (Claude Code, OpenAI Codex, OpenClaw u otro con terminal) un 
 - **9 estilos** listos (corporate, minimal, creativo, clásico, neón, editorial, pastel, educación e islas isométricas) y un **creador de estilos** que genera uno nuevo a partir de tres colores, una guía de marca o una web.
 - **Todo parametrizable** en `project.config.json`: idioma, formato (16:9, 9:16, 1:1, 4K), fps, estilo, marca y logos, voz, música, salidas y reglas de contenido. `npm run init` te lo pregunta todo.
 - **Voz gratis por defecto** (Edge TTS, sin clave, decenas de idiomas). ElevenLabs y Kokoro local como alternativas.
+- **Subtítulos** `.srt`/`.vtt` y, si quieres, **subtítulos cinéticos** (karaoke por palabra) dibujados en el vídeo.
 - **Infografía** PNG + PDF + HTML con el mismo estilo que el vídeo.
 - **Sin secretos en el repo**: las claves solo en `.env`; la marca y los logos los pones tú (no se incluye ninguna marca).
 - **Humano en el bucle**: el agente para a enseñarte el guion antes de gastar voz y los fotogramas antes del render.
@@ -100,7 +101,7 @@ Node 20+, Python 3.10+, ffmpeg y un Chromium (el de Playwright, o Edge/Chrome in
 
 ## Hoja de ruta
 
-Ideas tomadas de proyectos abiertos (alineación forzada para cualquier voz, transiciones como bloques, subtítulos cinéticos, gráficos en la infografía…): [docs/mejoras-github.md](docs/mejoras-github.md).
+Ideas tomadas de proyectos abiertos (alineación forzada para cualquier voz, transiciones como bloques, gráficos en la infografía…): [docs/mejoras-github.md](docs/mejoras-github.md).
 
 ## Licencia
 

@@ -42,6 +42,7 @@ Párrafo nuevo (pausa algo mayor).
 - Unas `video.wordsPerMinute` palabras por minuto (150 por defecto).
 - Pronunciación: `{Texto en pantalla|cómo se dice}`, p. ej. `{IT|ái tí}`, `{API|a pe i}`.
 - Silencio: un párrafo que sea solo `(pause 1.5)`. Úsalo al final del último segmento para que el cierre respire.
+- Marcador: `<mark name="grafico"/>` dentro de una frase (no se pronuncia ni sale en subtítulos). La escena lo usa con `q.mark('grafico')` = inicio de la palabra siguiente. Útil cuando la palabra clave se repite. Nombres únicos por segmento.
 - Escribe los números como se dicen si hay ambigüedad ("veintiún agentes").
 - Opcional: una línea `tts: edge|elevenlabs|kokoro|none` antes del primer `##` fuerza el motor para este vídeo.
 

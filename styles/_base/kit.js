@@ -587,6 +587,7 @@ export function sweep(ctx, p, { color = T.accent, width = 0.35 } = {}) {
  * Like runtime cues() but normalises accents/ñ, so q.word('empezó') or q.word('empezo') both work.
  *   q.s(i) / q.e(i) sentence start/end · q.word(w, nth) first/nth word start · q.wordEnd(w, nth)
  *   q.wordIn(i, w) word start inside sentence i (safer for repeated words) · q.at(t)
+ *   q.mark('x') time of <mark name="x"/> in narration.md (start of the word after it)
  * Returns null for a miss — scenes should guard with `?? fallback`.
  */
 export function cuesFor(env) {
@@ -601,12 +602,62 @@ export function cuesFor(env) {
     word: (m, nth = 1) => find(m, nth, words)?.start ?? null,
     wordEnd: (m, nth = 1) => find(m, nth, words)?.end ?? null,
     wordIn: (i, m, nth = 1) => find(m, nth, words.filter((w) => w.si === i))?.start ?? null,
+    mark: (name) => env.timing.marks?.[name] ?? null,
     at(t) { let idx = 0; S.forEach((s, i) => { if (t >= s.start) idx = i; }); return idx; },
   };
 }
 
 /** Alias kept for scenes written for the original harness. */
 export const cuesEs = cuesFor;
+
+// ── Kinetic captions ────────────────────────────────────────────────────────
+/**
+ * Karaoke captions from the word timings: the current line (≤ maxChars, never across
+ * sentences, same split as the .srt) on a dark band, spoken words full, the word being
+ * said in the accent colour. frame.html draws them over every scene when
+ * outputs.kineticCaptions is true; a scene can also call it directly.
+ */
+export function captions(ctx, t, env, { size = Math.round(Math.min(W, H) * 0.05), maxChars = W < H ? 24 : 42, y = H - Math.round(H * (W < H ? 0.2 : 0.09)), hold = 0.25 } = {}) {
+  let line = null;
+  for (const s of env.timing.sentences) {
+    if (t < s.start - 0.1 || t > s.end + hold) continue;
+    // balanced lines: as many as maxChars requires, each close to the same length (no orphan word)
+    const len = s.words.map((w) => w.w).join(' ').length;
+    const target = len / Math.ceil(len / maxChars);
+    let cur = [];
+    const groups = [];
+    for (const w of s.words) { if (cur.length && [...cur, w].map((x) => x.w).join(' ').length > target + 4) { groups.push(cur); cur = []; } cur.push(w); }
+    if (cur.length) groups.push(cur);
+    line = groups.find((g, i) => t < (groups[i + 1]?.[0].start ?? s.end + hold)) ?? null;
+    if (line) break;
+  }
+  if (!line) return;
+  const a = line[0].start, b = line[line.length - 1].end;
+  const alpha = Math.min(e(t, a - 0.1, 0.12), 1 - e(t, b + hold - 0.12, 0.12));
+  if (alpha <= 0) return;
+  const weight = Math.max(500, T.wLabel ?? 600), gap = size * 0.3;
+  const ws = line.map((w) => measure(ctx, w.w, { size, weight }));
+  const total = ws.reduce((s, x) => s + x, 0) + gap * (line.length - 1);
+  const padX = size * 0.55, padY = size * 0.4;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  roundRectPath(ctx, W / 2 - total / 2 - padX, y - size - padY * 0.6, total + padX * 2, size + padY * 2, size * 0.35);
+  ctx.fillStyle = isLight() ? ra('text', 0.88) : ra('deep', 0.78);   // always a dark band: light themes' deep is pale
+  ctx.fill();
+  let x = W / 2 - total / 2;
+  line.forEach((w, i) => {
+    const now = t >= w.start && t < (line[i + 1]?.start ?? b + hold);
+    const said = t >= w.start;
+    const pop = now ? 1 + 0.08 * (1 - e(t, w.start, 0.18)) : 1;
+    ctx.save();
+    ctx.translate(x + ws[i] / 2, y - size * 0.35);
+    ctx.scale(pop, pop);
+    text(ctx, w.w, 0, size * 0.35, { size, weight, align: 'center', color: now ? T.accent : '#ffffff', alpha: said ? 1 : 0.45 });
+    ctx.restore();
+    x += ws[i] + gap;
+  });
+  ctx.restore();
+}
 
 // ── Wordmark ────────────────────────────────────────────────────────────────
 /**

@@ -8,6 +8,8 @@ animated against these timings, never the other way round).
 Reads  <ep>/narration.md   — one `## <segName>` heading per segment, prose below.
        Pronunciation override inline: {Display|spoken}  e.g. {SynthID|Synth I D}.
        A paragraph that is only `(pause N)` inserts N seconds of silence (think time).
+       Marker inline: <mark name="x"/> — never spoken; timings.json gets marks.x = start
+       of the next word (scenes: q.mark('x')), for beats that a repeated word can't pin.
 Writes <ep>/audio/NN-<seg>.wav and <ep>/audio/timings.json.
 
 Each sentence is synthesised separately, so sentence starts are exact (no
@@ -76,6 +78,7 @@ TAIL = float(TTS.get("tail", 0.6))                 # silence the scene holds aft
 WPM = float(CFG.get("video", {}).get("wordsPerMinute", 150))
 OVERRIDE = re.compile(r"\{([^|}]+)\|([^}]+)\}")
 PAUSE = re.compile(r"^\(pause\s+([\d.]+)\)$")
+MARK = re.compile(r"\s*<mark\s+name=[\"']([\w-]+)[\"']\s*/?>\s*")
 
 def _load_dotenv():
     """<repo>/.env → os.environ (only keys not already set, empty values ignored)"""
@@ -268,11 +271,17 @@ def sentences(para: str):
     return [s for s in SENT_SPLIT.split(para) if s.strip()]
 
 
-SENT_SPLIT = re.compile(r"(?<=[.!?…])\s+(?=[¿¡\"'{«“]|[A-ZÀ-ÖØ-ÞĀ-ſΑ-ΩА-Я])")
+SENT_SPLIT = re.compile(r"(?<=[.!?…])\s+(?=[¿¡\"'{«“<]|[A-ZÀ-ÖØ-ÞĀ-ſΑ-ΩА-Я])")
 
 
-def display(s): return OVERRIDE.sub(lambda m: m.group(1), s)
-def spoken(s): return OVERRIDE.sub(lambda m: m.group(2), s)
+def unmark(s): return MARK.sub(" ", s).strip()
+def display(s): return OVERRIDE.sub(lambda m: m.group(1), unmark(s))
+def spoken(s): return OVERRIDE.sub(lambda m: m.group(2), unmark(s))
+
+
+def marks_in(sent):
+    """[(name, index of the display word that follows the marker)] for one raw sentence"""
+    return [(m.group(1), len(word_spans(unmark(sent[:m.start()]))[0])) for m in MARK.finditer(sent)]
 
 
 def rms(path: Path, fps: int = 30):
@@ -336,7 +345,7 @@ def main():
         if only and name not in only and name in prev:
             result.append({**prev[name], "file": fname})
             continue
-        chunks, sents, cursor, sr = [], [], 0.0, 24000
+        chunks, sents, marks, cursor, sr = [], [], {}, 0.0, 24000
         flat = [(pi, s_) for pi, para in enumerate(seg["paras"]) if not PAUSE.match(para.strip()) for s_ in sentences(para)]
         k = 0
         for pi, para in enumerate(seg["paras"]):
@@ -360,7 +369,7 @@ def main():
                     cursor += gap
                 d = len(samples) / sr
                 shown = display(sent)
-                spans, spk = word_spans(sent)
+                spans, spk = word_spans(unmark(sent))
                 wt = []
                 if align and len(align) >= len(spk.strip()) * 0.8:
                     starts = [t for _, t in align]
@@ -376,6 +385,10 @@ def main():
                         ws = cursor + d * acc / total
                         acc += kk
                         wt.append({"w": w, "start": ws / AT, "end": (cursor + d * acc / total) / AT})
+                for mk, wi in marks_in(sent):
+                    if mk in marks:
+                        sys.exit(f'duplicate <mark name="{mk}"/> in segment "{name}"')
+                    marks[mk] = wt[wi]["start"] if wi < len(wt) else (cursor + d) / AT
                 sents.append({"text": shown, "para": pi, "start": cursor / AT, "end": (cursor + d) / AT, "words": wt})
                 chunks.append(samples.astype(np.float32))
                 cursor += d
@@ -389,7 +402,8 @@ def main():
             s["start"], s["end"] = round(s["start"], 3), round(s["end"], 3)
             for w in s["words"]:
                 w["start"], w["end"] = round(w["start"], 3), round(w["end"], 3)
-        result.append({"name": name, "file": fname, "duration": round(dur, 3), "sentences": sents, "rms": rms(out / fname)})
+        result.append({"name": name, "file": fname, "duration": round(dur, 3), "sentences": sents,
+                       "marks": {k: round(v, 3) for k, v in marks.items()}, "rms": rms(out / fname)})
         words = sum(len(s["words"]) for s in sents)
         print(f"  {fname:28s} {dur:6.1f}s  {len(sents):2d} sentences  {words:4d} words")
 

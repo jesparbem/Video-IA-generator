@@ -40,6 +40,7 @@ Los **secretos** van en `.env` (plantilla en `.env.example`), nunca en estos fic
 | `audio.music` | vacío | música de fondo (ruta; asegúrate de tener la licencia) |
 | `audio.musicVolume` / `ducking` | 0.25 / `true` | volumen de la música y si baja sola cuando habla la voz |
 | `outputs.subtitles` / `burnSubtitles` | `true` / `false` | `.srt` + `.vtt`, y copia con subtítulos incrustados |
+| `outputs.kineticCaptions` | `false` | subtítulos cinéticos (karaoke por palabra) dibujados en el propio vídeo sobre cada escena; pensados para 9:16. No los combines con `burnSubtitles` |
 | `outputs.infographic` / `infographicFormat` / `infographicPdf` | `true` / `vertical` / `true` | infografía (`vertical`, `horizontal`, `square`, `a4`) |
 | `outputs.chapters` | `true` | `chapters.txt` con marcas de tiempo por segmento |
 | `guardrails.personNames` | `false` | si se pueden nombrar personas |
