@@ -18,7 +18,9 @@ export default {
     rise(ctx, 'De un documento a un vídeo', cx, H * 0.45, { size: 112, align: 'center', p: e(t, tHead - 0.3, 1.0), accent: [5] });
 
     // beat 2: the four outputs, each on its word (sentence 2), laid out from measured widths
-    const size = 40, gap = 32, padX = 22;
+    // fit the row to the frame width (vertical formats)
+    const row = (sz) => STEPS.reduce((a, s) => a + measure(ctx, s, { size: sz, weight: 600 }) + sz * 2, 0) + sz * 0.8 * (STEPS.length - 1);
+    const size = Math.floor(40 * Math.min(1, (W * 0.9) / row(40))), gap = size * 0.8, padX = size * 0.55;
     const widths = STEPS.map((s) => measure(ctx, s, { size, weight: 600 }) + padX * 2 + size * 0.9);
     let x = cx - (widths.reduce((a, b) => a + b, 0) + gap * (STEPS.length - 1)) / 2;
     STEPS.forEach((s, i) => {

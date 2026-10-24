@@ -219,15 +219,21 @@ export function text(ctx, str, x, y, { size = 64, weight = T.wText, color = T.te
 /**
  * Headline that rises in word by word behind a mask (the brand-motion signature).
  * words: string or array of {w, color?, weight?}. p: 0→1 reveal; out: 0→1 exit (rise up and fade).
+ * maxWidth (default 0.9·W): the size shrinks only if the line would be wider, so 16:9 headlines fit 9:16.
  * Returns the measured width.
  */
-export function rise(ctx, words, x, y, { size = 120, weight = T.wHead, family = T.fontDisplay, color = T.text, align = 'left', p = 1, out = 0, stagger = 0.12, accent = [], accentColor = T.accent } = {}) {
+export function rise(ctx, words, x, y, { size = 120, weight = T.wHead, family = T.fontDisplay, color = T.text, align = 'left', p = 1, out = 0, stagger = 0.12, accent = [], accentColor = T.accent, maxWidth = W * 0.9 } = {}) {
   const list = (Array.isArray(words) ? words : words.split(' ')).map((w) => (typeof w === 'string' ? { w: headCase(w) } : { ...w, w: headCase(w.w) }));
   ctx.save();
-  ctx.font = `${weight} ${size}px ${family}`;
-  const space = ctx.measureText(' ').width;
-  const widths = list.map((o) => { ctx.font = `${o.weight ?? weight} ${size}px ${family}`; return ctx.measureText(o.w).width; });
-  const total = widths.reduce((a, b) => a + b, 0) + space * (list.length - 1);
+  const measureAll = () => {
+    ctx.font = `${weight} ${size}px ${family}`;
+    const sp = ctx.measureText(' ').width;
+    const ws = list.map((o) => { ctx.font = `${o.weight ?? weight} ${size}px ${family}`; return ctx.measureText(o.w).width; });
+    return [sp, ws, ws.reduce((a, b) => a + b, 0) + sp * (list.length - 1)];
+  };
+  let [space, widths, total] = measureAll();
+  // shrink only when the line would leave the frame (e.g. a 16:9 headline rendered at 9:16)
+  if (total > maxWidth) { size = Math.floor(size * maxWidth / total); [space, widths, total] = measureAll(); }
   let cx = align === 'center' ? x - total / 2 : align === 'right' ? x - total : x;
   const n = list.length;
   list.forEach((o, i) => {
@@ -665,15 +671,20 @@ export function captions(ctx, t, env, { size = Math.round(Math.min(W, H) * 0.05)
  * Centred at x,y; size = type size. p 0→1 builds it (symbol pops, letters rise).
  * name defaults to brand.product (or brand.name) from the config.
  */
-export function wordmark(ctx, A, x, y, size = 120, { name = BRAND.product || BRAND.name || 'PRODUCT', p = 1, alpha = 1, glow = 0.6, t = 0 } = {}) {
+export function wordmark(ctx, A, x, y, size = 120, { name = BRAND.product || BRAND.name || 'PRODUCT', p = 1, alpha = 1, glow = 0.6, t = 0, maxWidth = W * 0.9 } = {}) {
   if (p <= 0 || alpha <= 0) return;
   const parts = name.toUpperCase().split(/\s+/);
   const a = parts[0], b = parts.slice(1).join(' ');
-  const tr = size * 0.12, fam = T.fontDisplay;
-  const wA = measure(ctx, a, { size, weight: 300, tracking: tr, family: fam });
-  const wB = b ? measure(ctx, b, { size, weight: 600, tracking: tr, family: fam }) : 0;
-  const bs = size * 1.15, gap = size * 0.45;
-  const total = bs + gap + wA + (b ? tr * 4 + wB : 0);
+  const fam = T.fontDisplay;
+  const fit = (sz) => {
+    const tr = sz * 0.12;
+    const wA = measure(ctx, a, { size: sz, weight: 300, tracking: tr, family: fam });
+    const wB = b ? measure(ctx, b, { size: sz, weight: 600, tracking: tr, family: fam }) : 0;
+    return [tr, wA, sz * 1.15, sz * 0.45, sz * 1.15 + sz * 0.45 + wA + (b ? tr * 4 + wB : 0)];
+  };
+  let [tr, wA, bs, gap, total] = fit(size);
+  // shrink only when it would leave the frame (vertical formats)
+  if (total > maxWidth) { size = Math.floor(size * maxWidth / total); [tr, wA, bs, gap, total] = fit(size); }
   const x0 = x - total / 2;
   ctx.save();
   ctx.globalAlpha *= alpha;

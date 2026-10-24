@@ -20,11 +20,11 @@ export default {
     const out = e(t, tEnd, 0.5, ease.inCubic);
     kicker(ctx, 'Cómo funciona', 200, 200, { p: e(t, 0.2, 0.6) * (1 - out) });
 
-    const y = H * 0.50, x0 = 330, x1 = W - 330;
+    const y = H * 0.50, x0 = Math.max(W * 0.17, 240), x1 = W - x0;
     const xs = NODES.map((_, i) => x0 + ((x1 - x0) * i) / (NODES.length - 1));
     const tn = NODES.map((n, i) => (q.word(n.k) ?? q.s(0) + i * 1.2) - 0.2);
     // doc that feeds the pipeline
-    docGlyph(ctx, 150, y, 90, t, { p: e(t, 0.4, 0.6) * (1 - out), alpha: 1 - out });
+    docGlyph(ctx, x0 * 0.45, y, 90, t, { p: e(t, 0.4, 0.6) * (1 - out), alpha: 1 - out });
     for (let i = 0; i < NODES.length; i++) {
       if (i > 0) energyLine(ctx, [[xs[i - 1] + 70, y], [xs[i] - 70, y]], t, { p: e(t, tn[i] - 0.4, 0.5) * (1 - out), pulses: 2, seed: i, width: 3, alpha: 1 - out });
       const active = t >= tn[i] && (i === NODES.length - 1 || t < tn[i + 1]);
